@@ -9,8 +9,8 @@
 #include "util/delay.h"
 #include "EXTI_Config.h"
 #include "EXTI_Interface.h"
- u8 EnableDisableFlag=FALSE;
- extern u8 FirstBottomFlag;
+u8 EnableDisableFlag=FALSE;
+extern u8 FirstBottomFlag;
 extern u8 Bottom_Increase_Pressed_Flag;
 extern u8 Bottom_Decrease_Pressed_Flag;
 

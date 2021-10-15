@@ -15,6 +15,7 @@ u8 FirstBottomFlag=0;
 u8 CurrentSetTemp=60;
 u8 Bottom_Increase_Pressed_Flag=0;
 u8 Bottom_Decrease_Pressed_Flag=0;
+u8 SettingMode_Segment_Counter =0; ////////////////////////
 
 void TemperatureSetting_voidTempSettingModeRun (void)
 {
@@ -45,8 +46,14 @@ void TemperatureSetting_voidTempSettingModeRun (void)
 	{
 
 	}
-	SevenSegment_voidSendNumber(CurrentSetTemp);
+	if (10>SettingMode_Segment_Counter)
+	{
+		SevenSegment_voidSendNumber(CurrentSetTemp);
+	}
+	else
+	{
 
+	}
 }
 
 

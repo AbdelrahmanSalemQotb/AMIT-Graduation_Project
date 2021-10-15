@@ -18,19 +18,17 @@ void SevenSegment_voidInitPins (void)
 void SevenSegment_voidSendNumber (u8 Copy_u8Number)
 {
 	u8 i;
-//	u8 j;
 	u8 temp1=0,temp2=0;
 	temp1=(Copy_u8Number%10)|((Copy_u8Number%10)<<4);
 	temp2=(Copy_u8Number/10)|((Copy_u8Number/10)<<4);
-//	for (j=0;j<10;j++)
-//	{
+
 		for (i=0;i<2;i++)
 		{
 			if (0==i)
 			{
 				DIO_u8SetNippleBitsValue(SEVEN_SEGMENT_DATA_PORT,SEVEN_SEGMENT_DATA_PINS_NIPPLE,temp2);
 				DIO_u8SetPinValue(SEVEN_SEGMENT_ENABLE1_PIN,SEVEN_SEGMENT_ENABLE_PORT,PIN_HIGH);
-				_delay_ms(10);
+				_delay_ms(5);
 				DIO_u8SetPinValue(SEVEN_SEGMENT_ENABLE1_PIN,SEVEN_SEGMENT_ENABLE_PORT,PIN_LOW);
 
 			}
@@ -38,13 +36,13 @@ void SevenSegment_voidSendNumber (u8 Copy_u8Number)
 			{
 				DIO_u8SetNippleBitsValue(SEVEN_SEGMENT_DATA_PORT,SEVEN_SEGMENT_DATA_PINS_NIPPLE,temp1);
 				DIO_u8SetPinValue(SEVEN_SEGMENT_ENABLE2_PIN,SEVEN_SEGMENT_ENABLE_PORT,PIN_HIGH);
-				_delay_ms(10);
+				_delay_ms(5);
 				DIO_u8SetPinValue(SEVEN_SEGMENT_ENABLE2_PIN,SEVEN_SEGMENT_ENABLE_PORT,PIN_LOW);
 
 			}
 		}
 
-//	}
+
 }
 void SevenSegment_voidDisable (void)
 {
