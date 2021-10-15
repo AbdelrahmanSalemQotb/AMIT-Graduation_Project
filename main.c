@@ -22,7 +22,6 @@
 void TIMER1_CTC_FUNCTION (void);
 void ADC_INT_FUNCTION (void);
 
-u8 Segment_Counter =0; ////////////////////////
 u8 TEMP_SENSOR=0;
 int main(void)
 {
@@ -80,7 +79,6 @@ int main(void)
 void TIMER1_CTC_FUNCTION (void)
 {
 	ADC_voidStartConversion(Input_Channel_ADC_ADC1,MODES_ADC_SINGLE_CONVERSION);
-	//	Segment_Counter++;
 
 	switch (FirstBottomFlag) {
 	case 51:					/* 5 sec in setting mode only */
@@ -91,6 +89,15 @@ void TIMER1_CTC_FUNCTION (void)
 		break;
 	default:
 		FirstBottomFlag++;
+		if (19==SettingMode_Segment_Counter)
+			{
+				SettingMode_Segment_Counter=0;
+			}
+		else
+		{
+			SettingMode_Segment_Counter++;
+		}
+
 		break;
 	}
 }
