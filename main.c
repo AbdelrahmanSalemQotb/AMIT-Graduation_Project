@@ -17,7 +17,8 @@
 #include "TIMER1_Interface.h"
 #include "ADC_Config.h"
 #include "ADC_Interface.h"
-
+#include "Heating_elelment_interface.h"
+#include "Cooling_element_Interface.h"
 
 void TIMER1_CTC_FUNCTION (void);
 void ADC_INT_FUNCTION (void);
@@ -34,6 +35,10 @@ int main(void)
 	/* PASS CALLBACK FUNCTION OF ADC */
 	ADC_voidSet_CallbackFunction(ADC_INT_FUNCTION);
 
+	/* Cooling/Heating element init */
+	COOLING_voidInit();
+	HEATING_voidInit();
+
 	SevenSegment_voidInitPins();
 	PushBottoms_voidInit();
 	EXTI_voidINT0_Init();
@@ -48,14 +53,28 @@ int main(void)
 			{
 				/* Enter Temperature sensor read mode
 				 * And Heating Cooling system */
+				if (TEMP_SENSOR<=(CurrentSetTemp-5))
+				{
+					HEATING_voidEnable();
+					COOLING_voidDisable();
+				}
+				else if(TEMP_SENSOR>=(CurrentSetTemp+5))
+				{
+					COOLING_voidEnable();
+					HEATING_voidDisable();
+				}
 
 				/* Reading TEMP Sensor Average in ADC interrupt
 				 * And Display it here */
 				SevenSegment_voidSendNumber(TEMP_SENSOR);
-
 			}
 			else
 			{
+				/* Disable HEATING COOLING SYSTEM */
+				COOLING_voidDisable();
+				HEATING_voidDisable();
+				HEATING_COOLING_voidLED_Disable();
+
 				/* Enter temperature setting mode */
 				TemperatureSetting_voidTempSettingModeRun();
 
@@ -64,6 +83,10 @@ int main(void)
 		break;
 		case FALSE:
 			SevenSegment_voidDisable();
+			/* Disable HEATING COOLING SYSTEM */
+			COOLING_voidDisable();
+			HEATING_voidDisable();
+			HEATING_COOLING_voidLED_Disable();
 			break;
 		default:
 			break;
@@ -80,6 +103,8 @@ void TIMER1_CTC_FUNCTION (void)
 {
 	ADC_voidStartConversion(Input_Channel_ADC_ADC1,MODES_ADC_SINGLE_CONVERSION);
 
+	Heating_LED_Count++;
+
 	switch (FirstBottomFlag) {
 	case 51:					/* 5 sec in setting mode only */
 		FirstBottomFlag=FALSE;
@@ -90,9 +115,9 @@ void TIMER1_CTC_FUNCTION (void)
 	default:
 		FirstBottomFlag++;
 		if (19==SettingMode_Segment_Counter)
-			{
-				SettingMode_Segment_Counter=0;
-			}
+		{
+			SettingMode_Segment_Counter=0;
+		}
 		else
 		{
 			SettingMode_Segment_Counter++;
@@ -105,5 +130,4 @@ void TIMER1_CTC_FUNCTION (void)
 void ADC_INT_FUNCTION (void)
 {
 	TEMP_SENSOR=TemperatureSensor_u8GetTempAverage();
-
 }

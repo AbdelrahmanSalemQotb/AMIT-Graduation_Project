@@ -1,0 +1,36 @@
+/*
+ * Cooling_element_Program.c
+ *
+ *  Created on: Oct 15, 2021
+ *      Author: msqotb
+ */
+#include "STD_TYPES.h"
+#include "Cooling_element_Config.h"
+#include "DIO_Interface.h"
+
+void COOLING_voidInit (void)
+{
+	DIO_u8SetPinDirection(HEATING_COOLING_ELEMENT_LED_PIN,HEATING_COOLING_ELEMENT_LED_PORT,PIN_OUTPUT);
+	DIO_u8SetPinDirection(COOLING_ELEMENT_PIN,COOLING_ELEMENT_PORT,PIN_OUTPUT);
+
+}
+void COOLING_voidEnable (void)
+{
+
+	DIO_u8SetPinValue(HEATING_COOLING_ELEMENT_LED_PIN,HEATING_COOLING_ELEMENT_LED_PORT,PIN_HIGH);
+
+	DIO_u8SetPinValue(COOLING_ELEMENT_PIN,COOLING_ELEMENT_PORT,PIN_HIGH);
+
+}
+void COOLING_voidDisable (void)
+{
+	DIO_u8SetPinValue(COOLING_ELEMENT_PIN,COOLING_ELEMENT_PORT,PIN_LOW);
+
+}
+
+void HEATING_COOLING_voidLED_Disable(void)
+{
+	DIO_u8SetPinValue(HEATING_COOLING_ELEMENT_LED_PIN,HEATING_COOLING_ELEMENT_LED_PORT,PIN_LOW);
+
+}
+
