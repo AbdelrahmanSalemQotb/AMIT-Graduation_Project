@@ -45,6 +45,10 @@ int main(void)
 	{
 		CurrentSetTemp=EEPROM_Temp_Data;
 	}
+	else
+	{
+		CurrentSetTemp=60;
+	}
 	/* INIT */
 	SevenSegment_voidInitPins();
 	PushButtons_voidInit();

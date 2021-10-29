@@ -19,14 +19,10 @@ void INTERNAL_EEPROM_voidWriteByte (u16 Copy_u8Address , u8 Copy_u8DataByte)
 	while (GET_BIT(SPMCR,0)==1);
 	EEAR=Copy_u8Address;
 	EEDR=Copy_u8DataByte;
-//	/* Set EEPROM Master Write Enable bit while EEWE is cleared */
-//	SET_BIT(EECR,2);
-//	/* SET EEWE Bit to start write */
-//	SET_BIT(EECR,1);
 	/*write logical one to EEMWE*/
-		SET_BIT(EECR,2);
-		/*start EEPROM write by setting EEWE*/
-		SET_BIT(EECR,1);
+	SET_BIT(EECR,2);
+	/*start EEPROM write by setting EEWE*/
+	SET_BIT(EECR,1);
 
 }
 u8 INTERNAL_EEPROM_voidReadByte (u16 Copy_u8Address)
