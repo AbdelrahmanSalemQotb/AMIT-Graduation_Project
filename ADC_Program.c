@@ -81,15 +81,15 @@ void ADC_voidInit(Reference_voltage_ADC Copy_u8VREF  ,ADC_Prescaler Copy_u8ADCPr
 
 
 	switch (Copy_BOOL_ADCInterrupt) {
-		case TRUE:
-			/*ADC Interrupt Enable*/
-			LOC_ADC_InterruptFlag=1;
-			SET_BIT(ADCSRA,3);
-			break;
-		default:
-			LOC_ADC_InterruptFlag=0;
-			break;
-		}
+	case TRUE:
+		/*ADC Interrupt Enable*/
+		LOC_ADC_InterruptFlag=1;
+		SET_BIT(ADCSRA,3);
+		break;
+	default:
+		LOC_ADC_InterruptFlag=0;
+		break;
+	}
 
 }
 

@@ -1,5 +1,5 @@
 /*
- * Push_Bottoms.c
+ * Push_Buttons.c
  *
  *  Created on: Oct 13, 2021
  *      Author: msqotb
@@ -10,46 +10,46 @@
 #include "EXTI_Config.h"
 #include "EXTI_Interface.h"
 u8 EnableDisableFlag=FALSE;
-extern u8 FirstBottomFlag;
-extern u8 Bottom_Increase_Pressed_Flag;
-extern u8 Bottom_Decrease_Pressed_Flag;
+extern u8 FirstButtonFlag;
+extern u8 Button_Increase_Pressed_Flag;
+extern u8 Button_Decrease_Pressed_Flag;
 
-void PushBottoms_voidInit (void)
+void PushButtons_voidInit (void)
 {
-	/* Set Bottoms to input pulldown */
+	/* Set Buttons to input pulldown */
 	DIO_u8SetPinDirection(DIO_PIN2,DIO_PORTB,PIN_INPUT);
 	DIO_u8SetPinDirection(DIO_PIN3,DIO_PORTD,PIN_INPUT);
 	DIO_u8SetPinDirection(DIO_PIN2,DIO_PORTD,PIN_INPUT); //
 
 }
-void PushBottoms_u8IsIncrease_Bottom_Pressed (void)
+void PushButtons_u8IsIncrease_Button_Pressed (void)
 {
-	if (FALSE==FirstBottomFlag)
+	if (FALSE==FirstButtonFlag)
 	{
-		FirstBottomFlag=TRUE;
+		FirstButtonFlag=TRUE;
 	}
 	else
 	{
-		FirstBottomFlag=TRUE;
-		Bottom_Increase_Pressed_Flag=1;
+		FirstButtonFlag=TRUE;
+		Button_Increase_Pressed_Flag=1;
 	}
 
 }
 
-void PushBottoms_u8IsDecrease_Bottom_Pressed (void)
+void PushButtons_u8IsDecrease_Button_Pressed (void)
 {
-	if (FALSE==FirstBottomFlag)
+	if (FALSE==FirstButtonFlag)
 	{
-		FirstBottomFlag=TRUE;
+		FirstButtonFlag=TRUE;
 	}
 	else
 	{
-		FirstBottomFlag=TRUE;
-		Bottom_Decrease_Pressed_Flag=1;
+		FirstButtonFlag=TRUE;
+		Button_Decrease_Pressed_Flag=1;
 	}
 }
 
-void PushBottoms_voidEnable_Disable (void)
+void PushButtons_voidEnable_Disable (void)
 {
 	if (EnableDisableFlag==FALSE)
 	{
@@ -57,7 +57,7 @@ void PushBottoms_voidEnable_Disable (void)
 		/* run the code */
 
 
-		/* Enable increase / decrease bottoms interrupt */
+		/* Enable increase / decrease Buttons interrupt */
 		EXTI_voidINT1_Init();
 		EXTI_voidINT2_Init();
 
@@ -66,7 +66,7 @@ void PushBottoms_voidEnable_Disable (void)
 	{
 		EnableDisableFlag=FALSE;
 		/* Turn off 7-segment and temperature heat/cold */
-		/* Disable increase / decrease bottoms interrupt */
+		/* Disable increase / decrease Buttons interrupt */
 		EXTI_voidINT1_Disable();
 		EXTI_voidINT2_Disable();
 	}

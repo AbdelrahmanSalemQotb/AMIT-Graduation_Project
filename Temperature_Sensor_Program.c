@@ -24,12 +24,12 @@ void TemperatureSensor_voidInit(void)
 u16 TemperatureSensor_u8GetTempValue (void)
 {
 
-		u16 DigitalTemp=0,CurrentTemperature=0;
+	u16 DigitalTemp=0,CurrentTemperature=0;
 
-		DigitalTemp=ADC_u16DigitalRead();
+	DigitalTemp=ADC_u16DigitalRead();
 	/* using 10bit resolution */
-		CurrentTemperature=(DigitalTemp*5000UL)/10240;
-		return CurrentTemperature;
+	CurrentTemperature=(DigitalTemp*5000UL)/10240;
+	return CurrentTemperature;
 }
 u16 TemperatureSensor_u8GetTempAverage (void)
 {

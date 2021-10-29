@@ -10,7 +10,7 @@
 
 void TemperatureSetting_voidCheck (void);
 void TemperatureSetting_voidTempSettingModeRun (void);
-extern u8 FirstBottomFlag;
+extern u8 FirstButtonFlag;
 extern u8 CurrentSetTemp;
 extern u8 SettingMode_Segment_Counter;
 

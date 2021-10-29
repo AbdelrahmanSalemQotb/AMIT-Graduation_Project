@@ -29,7 +29,7 @@
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.debug.467894787" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.debug">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.455966585" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level" useByScannerDiscovery="false"/>
-								<option id="de.innot.avreclipse.compiler.option.optimize.532976948" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" useByScannerDiscovery="false"/>
+								<option id="de.innot.avreclipse.compiler.option.optimize.532976948" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" useByScannerDiscovery="false" value="de.innot.avreclipse.compiler.optimize.two" valueType="enumerated"/>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.189811930" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.debug.130256051" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.debug">
